@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>napredne-projekat</name>
+    </assembly>
+    <members>
+        <member name="T:napredne_projekat.Domain.Department">
+            <summary>
+            Domenska klasa koja predstavlja katedru
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Department.DepartmentId">
+            <summary>
+            Id katedre
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Department.Name">
+            <summary>
+            Naziv katedre
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Department.Size">
+            <summary>
+            Velicina katedre, odosno broj ljudi na katedri
+            </summary>
+        </member>
+        <member name="T:napredne_projekat.Domain.Enrollment">
+            <summary>
+            Domesnka klasa koja predstavlja pohadjanja, odnosno agregaciju izmedju klasa Student i Subject
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Enrollment.StudentId">
+            <summary>
+            Id studenta koji je vezan za ovo pohadjanje
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Enrollment.Student">
+            <summary>
+            Student koji je vezan za ovo pohadjanje
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Enrollment.SubjectId">
+            <summary>
+            Id premmeta koji je vezan za ovo pohadjanje
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Enrollment.Subject">
+            <summary>
+            Predmet koji je vezan za ovo pohadjanje
+            </summary>
+        </member>
+        <member name="T:napredne_projekat.Domain.NaprednoContext">
+            <summary>
+            Context klasa koja nam sluzi da preko EntityFramework-a povezemo domenske klase sa bazom
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.NaprednoContext.Students">
+            <summary>
+            Posredna klasa studenata
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.NaprednoContext.Subjects">
+            <summary>
+            Posredna klasa predmeta
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.NaprednoContext.Departments">
+            <summary>
+            Posredna klasa katedri
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.NaprednoContext.Enrollments">
+            <summary>
+            Posredna klasa pohadjanja
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Domain.NaprednoContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Metoda za konfiguraciju baze
+            </summary>
+            <param name="optionsBuilder"></param>
+        </member>
+        <member name="M:napredne_projekat.Domain.NaprednoContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Metoda za definisnaje tabela, veza i ogranicenja u bazi
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="T:napredne_projekat.Domain.Student">
+            <summary>
+            Domenska klasa koja predstavlja studenta
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Student.StudentId">
+            <summary>
+            Id studenta
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Student.FirstName">
+            <summary>
+            Ime studetna
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Student.LastName">
+            <summary>
+            Prezime studenta
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Student.Index">
+            <summary>
+            Broj indeksa datog studenta
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Student.Grade">
+            <summary>
+            Prosecna ocena studenta
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Student.DateOfBirth">
+            <summary>
+            Datum rodjenja studetna
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Student.Subjects">
+            <summary>
+            Lista predmeta koje student pohadja
+            </summary>
+        </member>
+        <member name="T:napredne_projekat.Domain.Subject">
+            <summary>
+            Domenska klasa koja predstavlja predmet
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Subject.SubjectId">
+            <summary>
+            Properti koji predstavlja id predmeta
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Subject.Name">
+            <summary>
+            Properti koji predstavlja naziv predmeta
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Subject.ESPB">
+            <summary>
+            Properti koji predstavlja koliko espb nosi predmet
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Subject.DepartmentId">
+            <summary>
+            Properti koji predstavlja id katedre kojoj predmet pripada
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Subject.Department">
+            <summary>
+            Katedra kojoj predmet pripada
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Domain.Subject.Students">
+            <summary>
+            Lista studenata koji pohadjaju ovaj predmet
+            </summary>
+        </member>
+        <member name="T:napredne_projekat.Program">
+            <summary>
+            Klasa u kojoj se nalaze metode za pokretanje aplikacije
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Program.Main(System.String[])">
+            <summary>
+            Main metoda za pokretanje aplikacije
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:napredne_projekat.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Metoda u kojoj konfigurisemo nase servis i nacin na koji se pokrece
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="T:napredne_projekat.Startup">
+            <summary>
+            Klasa za konfiguraciju aplikacije, odnosno dodavnje servisa i definisanje pipline-a
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Konstruktor za klasu Startup joja prima parametar configuartion
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:napredne_projekat.Startup.Configuration">
+            <summary>
+            Properti koji predstavlja konfiguraciju aplikacije
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Metoda koja nam sluzi za dodavanje servisa u kontejnjere
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:napredne_projekat.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Metoda koja nam sluzi za definisanje pipeline-a
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+        <member name="T:napredne_projekat.Validation.IdValidation">
+            <summary>
+            Klasa koja nam sluzi za validaciju Id-a
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Validation.IdValidation.IsValid(System.Object)">
+            <summary>
+            Metoda koja proverava da li prosledjena vrednost zadovoljava uslove
+            </summary>
+            <param name="value"></param>
+            <returns><list type="bullet">
+            <item>true - ako zadovoljava uslove</item>
+            <item>false - ako ne zadovoljava uslove</item>
+            </list></returns>
+        </member>
+    </members>
+</doc>
