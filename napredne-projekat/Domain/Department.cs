@@ -14,7 +14,7 @@ namespace napredne_projekat.Domain
         /// <summary>
         /// Id katedre
         /// </summary>
-        [IdValidation]
+        [IdValidation(ErrorMessage = "Invalid id")]
         public int DepartmentId { get; set; }
         /// <summary>
         /// Naziv katedre
@@ -24,6 +24,18 @@ namespace napredne_projekat.Domain
         /// Velicina katedre, odosno broj ljudi na katedri
         /// </summary>
         public int Size { get; set; }
+        /// <summary>
+        /// Parametrizovani konstruktor klase Department
+        /// </summary>
+        /// <param name="departmentId">Id katedre</param>
+        /// <param name="name">Naziv katedre</param>
+        /// <param name="size">Broj ljudi na katedri</param>
+        public Department(int departmentId, string name, int size)
+        {
+            DepartmentId = departmentId;
+            Name = name;
+            Size = size;
+        }
 
     }
 }
