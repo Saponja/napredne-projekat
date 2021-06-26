@@ -14,16 +14,29 @@ using System.Threading.Tasks;
 
 namespace napredne_projekat
 {
+    /// <summary>
+    /// Klasa za konfiguraciju aplikacije, odnosno dodavnje servisa i definisanje pipline-a
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Konstruktor za klasu Startup joja prima parametar configuartion
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
+        /// <summary>
+        /// Properti koji predstavlja konfiguraciju aplikacije
+        /// </summary>
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// Metoda koja nam sluzi za dodavanje servisa u kontejnjere
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -35,6 +48,11 @@ namespace napredne_projekat
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// Metoda koja nam sluzi za definisanje pipeline-a
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
