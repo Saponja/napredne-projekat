@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using napredne_projekat.Domain;
 
 namespace napredne_projekat.Migrations
 {
     [DbContext(typeof(NaprednoContext))]
-    partial class NaprednoContextModelSnapshot : ModelSnapshot
+    [Migration("20210626143615_initNew")]
+    partial class initNew
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

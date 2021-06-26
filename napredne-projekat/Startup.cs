@@ -7,6 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using napredne_projekat.Domain;
+using napredne_projekat.Repository.unit_of_work;
+using napredne_projekat.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,10 +44,15 @@ namespace napredne_projekat
         {
 
             services.AddControllers();
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "napredne_projekat", Version = "v1" });
             });
+
+            services.AddDbContext<NaprednoContext>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<DepartmentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -33,7 +33,11 @@ namespace napredne_projekat.Domain
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=napredne-projekat;");
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=napredne-projekat;");
+
+            }
         }
         /// <summary>
         /// Metoda za definisnaje tabela, veza i ogranicenja u bazi
@@ -45,6 +49,22 @@ namespace napredne_projekat.Domain
             {
                 e.HasKey(en => new { en.StudentId, en.SubjectId });
             });
+        }
+
+        /// <summary>
+        /// Bezparametraski konstruktor za kreiranje objekta
+        /// </summary>
+        public NaprednoContext()
+        {
+
+        }
+        /// <summary>
+        /// Parametraski konstrukotor za kreiranje objekta
+        /// </summary>
+        /// <param name="options">Opcije za kreiranje contexta</param>
+        public NaprednoContext(DbContextOptions options) : base(options)
+        {
+
         }
 
     }

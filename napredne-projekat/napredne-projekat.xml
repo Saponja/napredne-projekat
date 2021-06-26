@@ -86,6 +86,17 @@
             </summary>
             <param name="modelBuilder"></param>
         </member>
+        <member name="M:napredne_projekat.Domain.NaprednoContext.#ctor">
+            <summary>
+            Bezparametraski konstruktor za kreiranje objekta
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Domain.NaprednoContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions)">
+            <summary>
+            Parametraski konstrukotor za kreiranje objekta
+            </summary>
+            <param name="options">Opcije za kreiranje contexta</param>
+        </member>
         <member name="T:napredne_projekat.Domain.Student">
             <summary>
             Domenska klasa koja predstavlja studenta

@@ -9,8 +9,8 @@ namespace napredne_projekat.Repository
     {
         T FindById(int id);
         List<T> GetAll();
-        void Add(T item);
-        void Update(T item, int id);
+        T Add(T item);
+        T Update(T item, int id);
         void Delete(int id);
 
     }
