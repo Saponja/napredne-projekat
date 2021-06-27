@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace napredne_projekat.Validation
 {
+    /// <summary>
+    /// Klasa koja nam sluzi za validaciju velicine katedre
+    /// </summary>
     public class SizeValidation : ValidationAttribute
     {
+        ///<inheritdoc/>
         public override bool IsValid(object value)
         {
             if(value is Int32 temp)

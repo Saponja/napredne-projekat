@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace napredne_projekat.Validation
 {
-    /// <summary>
-    /// Klasa koja nam sluzi za validaciju naziva katedre
-    /// </summary>
-    public class DepartmentNameValidation : ValidationAttribute
+    public class NameValidation : ValidationAttribute
     {
-        ///<inheritdoc/>
         public override bool IsValid(object value)
         {
             if(value == null)
@@ -20,7 +16,7 @@ namespace napredne_projekat.Validation
             }
             if(value is string temp)
             {
-                if (temp.ToLower().Contains("katedra"))
+                if(temp.Length >= 2)
                 {
                     return true;
                 }

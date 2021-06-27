@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace napredne_projekat.Validation
+namespace napredne_projekat.Domain
 {
     /// <summary>
-    /// Klasa koja nam sluzi za validaciju naziva katedre
+    /// Klasa koja nam sluzi za validaciju godine rodjenja
     /// </summary>
-    public class DepartmentNameValidation : ValidationAttribute
+    public class YearOfBirthValidation : ValidationAttribute
     {
         ///<inheritdoc/>
         public override bool IsValid(object value)
@@ -18,9 +18,9 @@ namespace napredne_projekat.Validation
             {
                 throw new NullReferenceException();
             }
-            if(value is string temp)
+            if(value is DateTime date)
             {
-                if (temp.ToLower().Contains("katedra"))
+                if(date.Year <= 2002)
                 {
                     return true;
                 }
