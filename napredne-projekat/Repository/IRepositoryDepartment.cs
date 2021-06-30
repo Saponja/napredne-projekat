@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace napredne_projekat.Repository
 {
-    ///<inheritdoc cref="IRepositoryStudent{T}"/>
-    public interface IRepositoryDepartment : IRepositoryStudent<Department>
+    ///<inheritdoc cref="IRepository{T}"/>
+    public interface IRepositoryDepartment : IRepository<Department>
     {
         /// <summary>
         /// Metoda koja vraca jedan entity iz tabele na osnovu uslova koji smo zadali

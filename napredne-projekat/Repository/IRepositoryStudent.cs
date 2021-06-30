@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace napredne_projekat.Repository
 {
     ///<inheritdoc/>
-    public interface IRepositoryStudent : IRepositoryStudent<Student>
+    public interface IRepositoryStudent : IRepository<Student>
     {
         /// <summary>
         /// 

@@ -38,8 +38,6 @@ namespace napredne_projekat.test.Services
         {
             
             context.Database.EnsureDeleted();
-            departmentService = null;
-            uow = null;
             
             
         }

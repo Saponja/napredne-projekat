@@ -9,6 +9,7 @@ namespace napredne_projekat.Repository.unit_of_work
     {
         public IRepositoryDepartment Departments { get; set; }
         public IRepositoryStudent Students { get; set; }
+        public IRepositorySubject Subjects { get; set; }
         void Commit();
 
         void Dispose();

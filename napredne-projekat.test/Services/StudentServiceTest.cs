@@ -35,7 +35,6 @@ namespace napredne_projekat.test.Services
         public void Dispose()
         {
             context.Database.EnsureDeleted();
-            studentService = null;
         }
 
         public void SeedNoTracking()
