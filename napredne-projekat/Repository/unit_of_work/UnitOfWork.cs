@@ -15,9 +15,11 @@ namespace napredne_projekat.Repository.unit_of_work
         {
             this.context = context;
             Departments = new RepositoryDepartment(context);
+            Students = new RepositoryStudent(context);
         }
 
         public IRepositoryDepartment Departments { get; set; }
+        public IRepositoryStudent Students { get; set; }
 
         public void Commit()
         {

@@ -30,7 +30,7 @@ namespace napredne_projekat.Repository.repo_impl
             }
             return item;
         }
-        ///<inheritdoc 
+        ///<inheritdoc />
         public void Delete(int id)
         {
             Department department = FindById(id);

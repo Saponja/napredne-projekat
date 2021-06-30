@@ -16,6 +16,12 @@ namespace napredne_projekat.test.Validations
             sizeValidation = new SizeValidation();
         }
 
+        [Fact]
+        public void NonIntTypeShouldBeFalse()
+        {
+            Assert.False(sizeValidation.IsValid(2.12));
+        }
+
         [Theory]
         [InlineData(5)]
         [InlineData(23)]

@@ -16,6 +16,12 @@ namespace napredne_projekat.test.Validations
             gradeValidation = new GradeValidation();
         }
 
+        [Fact]
+        public void NonIntTypeShouldBeFalse()
+        {
+            Assert.False(gradeValidation.IsValid(2.12));
+        }
+
         [Theory]
         [InlineData(5)]
         [InlineData(8)]

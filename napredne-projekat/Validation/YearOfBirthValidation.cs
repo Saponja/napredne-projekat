@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace napredne_projekat.Domain
+namespace napredne_projekat.Validation
 {
     /// <summary>
     /// Klasa koja nam sluzi za validaciju godine rodjenja

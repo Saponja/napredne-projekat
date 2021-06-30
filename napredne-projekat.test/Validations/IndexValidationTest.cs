@@ -16,6 +16,12 @@ namespace napredne_projekat.test.Validations
             indexValidation = new IndexValidation();
         }
 
+        [Fact]
+        public void NonStringTypeShoudlBeFalse()
+        {
+            Assert.False(indexValidation.IsValid(123));
+        }
+
         [Theory]
         [InlineData("2017/0054")]
         [InlineData("2029/1234")]

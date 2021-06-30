@@ -1,4 +1,5 @@
-﻿using System;
+﻿using napredne_projekat.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,10 +18,12 @@ namespace napredne_projekat.Domain
         /// <summary>
         /// Properti koji predstavlja naziv predmeta
         /// </summary>
+        [NameValidation(ErrorMessage = "Name must be at least 3 char long")]
         public string Name { get; set; }
         /// <summary>
         /// Properti koji predstavlja koliko espb nosi predmet
         /// </summary>
+        [EspbValidation(ErrorMessage = "Espb must be in range of [2,8]")]
         public int ESPB { get; set; }
         /// <summary>
         /// Properti koji predstavlja id katedre kojoj predmet pripada

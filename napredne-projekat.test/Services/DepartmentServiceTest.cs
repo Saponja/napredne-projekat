@@ -19,35 +19,15 @@ namespace napredne_projekat.test.Services
         
         private  IUnitOfWork uow;
         private  DepartmentService departmentService;
-        static DbContextOptionsBuilder dbContextOption = new DbContextOptionsBuilder<NaprednoContext>().UseInMemoryDatabase("TestDb");
-        private NaprednoContext context = new NaprednoContext(dbContextOption.Options);
+
+        private NaprednoContext context;
 
 
         public DepartmentServiceTest()
         {
-
-            //var appFactory = new WebApplicationFactory<Startup>().
-            //    WithWebHostBuilder(builder =>
-            //    {
-            //        builder.ConfigureServices(services =>
-            //        {
-
-            //            var serviceDescriptor =
-            //            services.FirstOrDefault(d => d.ServiceType == typeof(NaprednoContext));
-            //            services.Remove(serviceDescriptor);
-            //            services.AddDbContext<NaprednoContext>(options => options.UseInMemoryDatabase("TestDb"));
-            //        });
-            //    });
-            //context = (NaprednoContext)appFactory.Services.GetService(typeof(NaprednoContext));
-            //DbContextOptionsBuilder<NaprednoContext> dbContextOptionsBuilder =
-            //   new DbContextOptionsBuilder<NaprednoContext>();
-            //dbContextOptionsBuilder.UseInMemoryDatabase("TestDb");
-            //context = new NaprednoContext(dbContextOptionsBuilder.Options);
-            
-            //var dbContextOption = new DbContextOptionsBuilder<NaprednoContext>().UseInMemoryDatabase("TestDb");
-            //context = new NaprednoContext(dbContextOption.Options)
+            DbContextOptionsBuilder dbContextOption = new DbContextOptionsBuilder<NaprednoContext>().UseInMemoryDatabase(new Guid().ToString());
+            context = new NaprednoContext(dbContextOption.Options);
             context.Database.EnsureCreated();
-            Seed();
             uow = new UnitOfWork(context);
             departmentService = new DepartmentService(uow);
 
@@ -58,6 +38,8 @@ namespace napredne_projekat.test.Services
         {
             
             context.Database.EnsureDeleted();
+            departmentService = null;
+            uow = null;
             
             
         }
@@ -65,6 +47,8 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void AddingNullValueShouldThrowNullPointerException()
         {
+            Seed();
+
             Assert.Throws<NullReferenceException>(() => departmentService.Add(null));
             Dispose();
         }
@@ -72,6 +56,8 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void AddingExistingItemShouldThrowAlreadyExistsException()
         {
+            Seed();
+
             Assert.Throws<AlreadyExistsException>(() => departmentService.Add(new Department
             {
                 Name = "Katedra za AI",
@@ -83,6 +69,8 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void AddingItemShouldReturnThatItem()
         {
+            SeedNoTracking();
+
             Department department = new Department { Name = "Katedra za OK", Size = 11 };
             Department newDepartment = departmentService.Add(department);
             Assert.Equal(department.Name, newDepartment.Name);
@@ -92,6 +80,8 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void GetAllShouldReturunAllDepartments()
         {
+            Seed();
+
             List<Department> departments = departmentService.GetAll();
             Assert.Equal(2, departments.Count);
             Dispose();
@@ -102,6 +92,7 @@ namespace napredne_projekat.test.Services
         [InlineData(2, "Katedra za AI")]
         public void FindWithValidIdShouldReturnDepartmentWithThatId(int id, string expected)
         {
+            Seed();
             Department department = departmentService.FindById(id);
 
             Assert.Equal(expected, department.Name);
@@ -112,6 +103,7 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void FindWithNonExistingIdShouldReturnNull()
         {
+            Seed();
             Department department = departmentService.FindById(11);
             Assert.Null(department);
             Dispose();
@@ -122,7 +114,7 @@ namespace napredne_projekat.test.Services
         [InlineData(-2)]
         public void FindWithInvalidIdShouldThrowIdException(int id)
         {
-            
+            Seed();
             Assert.Throws<IdException>(() => departmentService.FindById(id));
             Dispose();
         }
@@ -137,7 +129,7 @@ namespace napredne_projekat.test.Services
         [InlineData(-2)]
         public void UpdateWithInvalidIdShouldThrowIdException(int id)
         {
-
+            Seed();
             Assert.Throws<IdException>(() => departmentService.Update(new Department { Name = "Katedra za UI",Size = 12 }, id));
             Dispose();
         }
@@ -145,13 +137,16 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void UpdateWithNullShouldThrowNullReferenceException()
         {
+            Seed();
             Assert.Throws<NullReferenceException>(() => departmentService.Update(null, 1));
             Dispose();
         }
 
-        [Fact(Skip = "Test is broken")]
+        //[Fact(Skip = "Test is broken")]
+        [Fact]
         public void UpdateWithValidIdAndDeparShouldRetutnUpdatedDep()
         {
+            Seed();
             Department department = departmentService.Update(new Department { Name = "Katedra za UI", Size = 12 }, 1);
             Department newDepartment = departmentService.FindById(1);
             Assert.Equal(newDepartment, department);
@@ -163,14 +158,16 @@ namespace napredne_projekat.test.Services
         [InlineData(-2)]
         public void DeleteWithInvalidIdShouldThrowIdException(int id)
         {
-
+            Seed();
             Assert.Throws<IdException>(() => departmentService.Delete(id));
             Dispose();
         }
 
-        [Fact(Skip = "Test is broke")]
+        //[Fact(Skip = "Test is broke")]
+        [Fact]
         public void DeleteWithValidIdShouldDeleteItem()
         {
+            Seed();
             departmentService.Delete(1);
             List<Department> departments = departmentService.GetAll();
             Assert.Equal(1, departments.Count);
@@ -179,10 +176,26 @@ namespace napredne_projekat.test.Services
 
 
 
+        private void SeedNoTracking()
+        {
+            var s1 = context.Departments.Add(new Department { Name = "Katedra za IS", Size = 12 });
+            var s2 = context.Departments.Add(new Department { Name = "Katedra za AI", Size = 6 });
+
+            context.Entry<Department>(s1.Entity).State = EntityState.Detached;
+            context.Entry<Department>(s2.Entity).State = EntityState.Detached;
+
+            context.SaveChanges();
+
+        }
+
         private void Seed()
         {
-            context.Departments.Add(new Department { Name = "Katedra za IS", Size = 12 });
-            context.Departments.Add(new Department { Name = "Katedra za AI", Size = 6 });
+            var s1 = context.Departments.Add(new Department { Name = "Katedra za IS", Size = 12 });
+            var s2 = context.Departments.Add(new Department { Name = "Katedra za AI", Size = 6 });
+            //context.ChangeTracker.Clear();
+            //context.Entry<Department>(s1.Entity).State = EntityState.Detached;
+            //context.Entry<Department>(s2.Entity).State = EntityState.Detached;
+
             context.SaveChanges();
 
         }

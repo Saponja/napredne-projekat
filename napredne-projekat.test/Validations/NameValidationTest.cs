@@ -17,6 +17,12 @@ namespace napredne_projekat.test.Validations
             nameValidation = new NameValidation();
         }
 
+        [Fact]
+        public void NonStringTypeShoudlBeFalse()
+        {
+            Assert.False(nameValidation.IsValid(123));
+        }
+
         [Theory]
         [InlineData("Pera")]
         [InlineData("En")]

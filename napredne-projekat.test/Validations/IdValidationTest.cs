@@ -18,6 +18,12 @@ namespace napredne_projekat.test.Validations
         }
 
         [Fact]
+        public void NonIntTypeShouldBeFalse()
+        {
+            Assert.False(idValidation.IsValid(2.12));
+        }
+
+        [Fact]
         public void IdGraterThenZeroShouldBeValid()
         {
             var result = idValidation.IsValid(8);

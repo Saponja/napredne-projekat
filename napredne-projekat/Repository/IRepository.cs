@@ -10,7 +10,7 @@ namespace napredne_projekat.Repository
     /// </summary>
     /// <remarks>The remarks</remarks>
     /// <typeparam name="T">Tip domenske klase sa kojom radi repozitori</typeparam>
-    public interface IRepository<T>
+    public interface IRepositoryStudent<T>
     {
         /// <summary>
         /// Metoda koja nam vraca jedan entity iz tabele na osonvu id kojeg smo prosledili
