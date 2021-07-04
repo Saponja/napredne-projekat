@@ -25,12 +25,7 @@ namespace napredne_projekat.Domain
         /// </summary>
         [SizeValidation(ErrorMessage = "Size cant be less then 4 and grater then 24")]
         public int Size { get; set; }
-        /// <summary>
-        /// Parametrizovani konstruktor klase Department
-        /// </summary>
-        /// <param name="departmentId">Id katedre</param>
-        /// <param name="name">Naziv katedre</param>
-        /// <param name="size">Broj ljudi na katedri</param>
+
         
 
     }

@@ -27,10 +27,8 @@ namespace napredne_projekat.Domain
         /// Posredna klasa pohadjanja
         /// </summary>
         public DbSet<Enrollment> Enrollments { get; set; }
-        /// <summary>
-        /// Metoda za konfiguraciju baze
-        /// </summary>
-        /// <param name="optionsBuilder"></param>
+        
+        ///<inheritdoc/>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -39,10 +37,7 @@ namespace napredne_projekat.Domain
 
             }
         }
-        /// <summary>
-        /// Metoda za definisnaje tabela, veza i ogranicenja u bazi
-        /// </summary>
-        /// <param name="modelBuilder"></param>
+        ///<inheritdoc/>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Enrollment>(e =>
@@ -59,7 +54,7 @@ namespace napredne_projekat.Domain
 
         }
         /// <summary>
-        /// Parametraski konstrukotor za kreiranje objekta
+        /// Parametraski konstrukotor koji kreira objekat i postavlja pocetne opcije
         /// </summary>
         /// <param name="options">Opcije za kreiranje contexta</param>
         public NaprednoContext(DbContextOptions options) : base(options)

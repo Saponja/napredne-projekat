@@ -44,7 +44,6 @@ namespace napredne_projekat
         {
 
             services.AddControllers();
-            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "napredne_projekat", Version = "v1" });

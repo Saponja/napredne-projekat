@@ -1,6 +1,7 @@
 ﻿using napredne_projekat.Domain;
 using napredne_projekat.Exeptions.cs;
 using napredne_projekat.Repository.unit_of_work;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,9 @@ namespace napredne_projekat.Services
 
         public Subject FindById(int id)
         {
-            return uow.Subjects.FindById(id);
+            Subject subject = uow.Subjects.FindById(id);
+            
+            return subject;
         }
 
         public Subject UpdateSubject(Subject subject, int id)

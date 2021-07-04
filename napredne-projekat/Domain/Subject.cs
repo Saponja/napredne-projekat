@@ -1,4 +1,5 @@
 ﻿using napredne_projekat.Validation;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,7 @@ namespace napredne_projekat.Domain
         /// <summary>
         /// Properti koji predstavlja id katedre kojoj predmet pripada
         /// </summary>
+        [JsonIgnore]
         public int DepartmentId { get; set; }
         /// <summary>
         /// Katedra kojoj predmet pripada
