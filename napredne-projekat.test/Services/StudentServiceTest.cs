@@ -27,7 +27,8 @@ namespace napredne_projekat.test.Services
             DbContextOptionsBuilder dbContextOption = new DbContextOptionsBuilder<NaprednoContext>().UseInMemoryDatabase(new Guid().ToString());
             context = new NaprednoContext(dbContextOption.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking).Options);
             //context = new NaprednoContext(dbContextOption.Options);
-            context.Database.EnsureCreated();;
+            context.Database.EnsureCreated();
+            Seed();
             uow = new UnitOfWork(context);
             studentService = new StudentService(uow);
         }
@@ -37,7 +38,7 @@ namespace napredne_projekat.test.Services
             context.Database.EnsureDeleted();
         }
 
-        public void SeedNoTracking()
+        private void SeedNoTracking()
         {
             //var s1 = context.Students.Add(new Student
             //{
@@ -76,7 +77,7 @@ namespace napredne_projekat.test.Services
             context.SaveChanges();
         }
 
-        public void Seed()
+        private void Seed()
         {
             var s1 = new Student
             {
@@ -109,7 +110,7 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void GetAllStudentsShouldRetunrnAllStudentsFromTable()
         {
-            Seed();
+            //Seed();
             List<Student> students = studentService.GetAll();
             Assert.Equal(2, students.Count);
             Dispose();
@@ -126,7 +127,7 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void AddExistingStudentShouldThrowAlreadyExistsException()
         {
-            Seed();
+            //Seed();
             Student student = new Student
             {
                 FirstName = "Zika",
@@ -143,7 +144,7 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void AddingValidStudentShouldInsertStudentInTable()
         {
-            SeedNoTracking();
+            //SeedNoTracking();
             //Seed();
             Student student = new Student
             {
@@ -165,7 +166,7 @@ namespace napredne_projekat.test.Services
         [InlineData(2)]
         public void FindByIdWithExistingIdShouldReturnStudent(int id)
         {
-            Seed();
+            //Seed();
             Thread.Sleep(500);
             Student student = studentService.FindById(id);
             Assert.Equal(studentService.GetAll()[id-1].Index, student.Index);
@@ -178,7 +179,7 @@ namespace napredne_projekat.test.Services
         [InlineData(0)]
         public void FindByIdWithNonExistingIdShouldReturnNull(int id)
         {
-            Seed();
+            //Seed();
             Thread.Sleep(500);
             Student student = studentService.FindById(id);
             Assert.Null(student);
@@ -188,7 +189,7 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void GetByGradeShouldReturnStudentsWithThatGradeOrHigher()
         {
-            Seed();
+            //Seed();
             List<Student> students = studentService.GetByGrade(8);
             Assert.Equal(2, students.Count);
             Dispose();
@@ -199,7 +200,7 @@ namespace napredne_projekat.test.Services
         [InlineData(11)]
         public void GetByInvalidGradeShoudlReturnNull(int grade)
         {
-            Seed();
+            //Seed();
             Assert.Null(studentService.GetByGrade(grade));
             Dispose();
         }

@@ -117,10 +117,7 @@ namespace napredne_projekat.test.Services
             Assert.Equal(subjectService.GetAll()[1].Name, result.Name);
         }
 
-
-
-
-        public void Seed()
+        private void Seed()
         {
 
             context.Subjects.Add(new Subject

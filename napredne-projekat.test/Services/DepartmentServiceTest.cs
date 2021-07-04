@@ -28,6 +28,7 @@ namespace napredne_projekat.test.Services
             DbContextOptionsBuilder dbContextOption = new DbContextOptionsBuilder<NaprednoContext>().UseInMemoryDatabase(new Guid().ToString());
             context = new NaprednoContext(dbContextOption.Options);
             context.Database.EnsureCreated();
+            Seed();
             uow = new UnitOfWork(context);
             departmentService = new DepartmentService(uow);
 
@@ -45,7 +46,7 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void AddingNullValueShouldThrowNullPointerException()
         {
-            Seed();
+            //Seed();
 
             Assert.Throws<NullReferenceException>(() => departmentService.Add(null));
             Dispose();
@@ -54,7 +55,7 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void AddingExistingItemShouldThrowAlreadyExistsException()
         {
-            Seed();
+            //Seed();
 
             Assert.Throws<AlreadyExistsException>(() => departmentService.Add(new Department
             {
@@ -67,7 +68,7 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void AddingItemShouldReturnThatItem()
         {
-            SeedNoTracking();
+            //SeedNoTracking();
 
             Department department = new Department { Name = "Katedra za OK", Size = 11 };
             Department newDepartment = departmentService.Add(department);
@@ -78,7 +79,7 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void GetAllShouldReturunAllDepartments()
         {
-            Seed();
+            //Seed();
 
             List<Department> departments = departmentService.GetAll();
             Assert.Equal(2, departments.Count);
@@ -90,7 +91,7 @@ namespace napredne_projekat.test.Services
         [InlineData(2, "Katedra za AI")]
         public void FindWithValidIdShouldReturnDepartmentWithThatId(int id, string expected)
         {
-            Seed();
+            //Seed();
             Department department = departmentService.FindById(id);
 
             Assert.Equal(expected, department.Name);
@@ -101,7 +102,7 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void FindWithNonExistingIdShouldReturnNull()
         {
-            Seed();
+            //Seed();
             Department department = departmentService.FindById(11);
             Assert.Null(department);
             Dispose();
@@ -112,7 +113,7 @@ namespace napredne_projekat.test.Services
         [InlineData(-2)]
         public void FindWithInvalidIdShouldThrowIdException(int id)
         {
-            Seed();
+            //Seed();
             Assert.Throws<IdException>(() => departmentService.FindById(id));
             Dispose();
         }
@@ -127,7 +128,7 @@ namespace napredne_projekat.test.Services
         [InlineData(-2)]
         public void UpdateWithInvalidIdShouldThrowIdException(int id)
         {
-            Seed();
+            //Seed();
             Assert.Throws<IdException>(() => departmentService.Update(new Department { Name = "Katedra za UI",Size = 12 }, id));
             Dispose();
         }
@@ -135,7 +136,7 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void UpdateWithNullShouldThrowNullReferenceException()
         {
-            Seed();
+            //Seed();
             Assert.Throws<NullReferenceException>(() => departmentService.Update(null, 1));
             Dispose();
         }
@@ -144,7 +145,7 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void UpdateWithValidIdAndDeparShouldRetutnUpdatedDep()
         {
-            Seed();
+            //Seed();
             Department department = departmentService.Update(new Department { Name = "Katedra za UI", Size = 12 }, 1);
             Department newDepartment = departmentService.FindById(1);
             Assert.Equal(newDepartment, department);
@@ -156,7 +157,7 @@ namespace napredne_projekat.test.Services
         [InlineData(-2)]
         public void DeleteWithInvalidIdShouldThrowIdException(int id)
         {
-            Seed();
+            //Seed();
             Assert.Throws<IdException>(() => departmentService.Delete(id));
             Dispose();
         }
@@ -165,7 +166,7 @@ namespace napredne_projekat.test.Services
         [Fact]
         public void DeleteWithValidIdShouldDeleteItem()
         {
-            Seed();
+            //Seed();
             departmentService.Delete(1);
             List<Department> departments = departmentService.GetAll();
             Assert.Equal(1, departments.Count);
