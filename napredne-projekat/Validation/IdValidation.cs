@@ -11,14 +11,8 @@ namespace napredne_projekat.Validation
     /// </summary>
     public class IdValidation : ValidationAttribute
     {
-        /// <summary>
-        /// Metoda koja proverava da li prosledjena vrednost zadovoljava uslove
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns><list type="bullet">
-        /// <item>true - ako zadovoljava uslove</item>
-        /// <item>false - ako ne zadovoljava uslove</item>
-        /// </list></returns>
+        ///<inheritdoc/>
+        ///<exception cref="System.NullReferenceException" />
         public override bool IsValid(object value)
         {
             if(value == null)

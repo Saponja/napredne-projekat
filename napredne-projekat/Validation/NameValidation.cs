@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace napredne_projekat.Validation
 {
+    /// <summary>
+    /// Klasa koja nam sluzi za validaciju naziva
+    /// </summary>
     public class NameValidation : ValidationAttribute
     {
+        ///<inheritdoc/>
+        ///<exception cref="System.NullReferenceException" />
+
         public override bool IsValid(object value)
         {
             if(value == null)

@@ -12,6 +12,7 @@ namespace napredne_projekat.Validation
     public class YearOfBirthValidation : ValidationAttribute
     {
         ///<inheritdoc/>
+        ///<exception cref="System.NullReferenceException" />
         public override bool IsValid(object value)
         {
             if(value == null)

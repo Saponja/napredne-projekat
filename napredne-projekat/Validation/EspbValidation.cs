@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace napredne_projekat.Validation
 {
+    /// <summary>
+    /// Klasa koja nam sluzi za validaciju espb-a
+    /// </summary>
     public class EspbValidation : ValidationAttribute
     {
+        ///<inheritdoc/>
         public override bool IsValid(object value)
         {
             if(value is Int32 temp)

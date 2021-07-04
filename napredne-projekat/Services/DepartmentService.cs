@@ -9,19 +9,35 @@ using System.Threading.Tasks;
 
 namespace napredne_projekat.Services
 {
+    /// <summary>
+    /// Klasa koja nam sluzi za kao serivis iz koga se pozivaju operacije nad tabelom departmetnts u bazi
+    /// </summary>
     public class DepartmentService
     {
         private readonly IUnitOfWork uow;
+        /// <summary>
+        /// Parametrizovani konstrukor koji kreira objekat klase DepartmentService i postavlja vrednost za uow
+        /// </summary>
+        /// <param name="uow">Objekat klase UnitOfWork</param>
         public DepartmentService(IUnitOfWork uow)
         {
             this.uow = uow;
         }
-
+        /// <summary>
+        /// Metoda koja poziva UnitOfWork i vraca listu svih katedri
+        /// </summary>
+        /// <returns>Lista svih katedri</returns>
         public List<Department> GetAll()
         {
             return uow.Departments.GetAll();
         }
-
+        /// <summary>
+        /// Metoda koja poziva UnitOfWork da doda katedru  i vraca tu katedru
+        /// </summary>
+        /// <param name="item">Objekat klase Department</param>
+        /// <returns>Objekat klase Department koji je dodat</returns>
+        /// <exception cref="AlreadyExistsException" />
+        /// <exception cref="System.NullReferenceException" />
         public Department Add(Department item)
         {
             if(item == null)
@@ -37,7 +53,12 @@ namespace napredne_projekat.Services
             uow.Commit();
             return department;
         }
-
+        /// <summary>
+        /// Metoda koja poziva UnitOfWork i vraca katedru za prosledjenim id-jem
+        /// </summary>
+        /// <param name="id">Id katedre kao Int</param>
+        /// <returns>Objekat klase Department koji ima dati id</returns>
+        /// <exception cref="IdException" />
         public Department FindById(int id)
         {
             if(id <= 0)
@@ -49,7 +70,14 @@ namespace napredne_projekat.Services
 
             return department;
         }
-
+        /// <summary>
+        /// Metoda koja poziva UnitOfWork da update-uje katedru sa prosledjenim id-jem i vraca tu katedru
+        /// </summary>
+        /// <param name="item">Objekat klase Department sa novim podacima</param>
+        /// <param name="id">Id katedre koja treba da se update-uje kao Int</param>
+        /// <returns>Objekat klase Department koji je update-ovan</returns>
+        /// <exception cref="IdException" />
+        /// <exception cref="System.NullReferenceException" />
         public Department Update(Department item, int id)
         {
             if (id <= 0)
@@ -66,7 +94,11 @@ namespace napredne_projekat.Services
             return department;
 
         }
-
+        /// <summary>
+        /// Metoda koja poziva UnitOfWork da izbrise katedru sa datim id-jem
+        /// </summary>
+        /// <param name="id">Id katedre koja treba da se obrise kao Int</param>
+        /// <exception cref="IdException" />
         public void Delete(int id)
         {
             if(id <= 0)

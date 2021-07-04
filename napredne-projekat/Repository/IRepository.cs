@@ -25,7 +25,6 @@ namespace napredne_projekat.Repository
         /// Metoda koja dodaje entity u tabelu
         /// </summary>
         /// <param name="item">Entity klase T</param>
-        /// <returns>Entity klase T</returns>
         T Add(T item);
         /// <summary>
         /// Metoda koja update-uje onaj entity u tableli koji ima id koji smo proseldili

@@ -4,10 +4,149 @@
         <name>napredne-projekat</name>
     </assembly>
     <members>
+        <member name="T:napredne_projekat.Controllers.DepartmentController">
+            <summary>
+            Klasa koja nam sluzi za definisanje http metoda i endpoint-a za Department
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Controllers.DepartmentController.#ctor(napredne_projekat.Services.DepartmentService)">
+            <summary>
+            Parametrizovani konstruktor koji postavlja vrednost za departmentService
+            </summary>
+            <param name="departmentService">Objekat klase DepartmentService</param>
+        </member>
+        <member name="M:napredne_projekat.Controllers.DepartmentController.GetAll">
+            <summary>
+            Metoda koja prima GET zahtev i vraca sve katedre
+            </summary>
+            <returns>OkObjectResult sa statusom 200 i listom svih katedri</returns>
+        </member>
+        <member name="M:napredne_projekat.Controllers.DepartmentController.AddDepartment(napredne_projekat.Domain.Department)">
+            <summary>
+            Metoda koja prima POST zahtev i dodaje prosledjen objekat u bazu
+            </summary>
+            <param name="item">Objekat klase Department, prosledjen iz tela Http zahteva</param>
+            <returns><list type="bullet">
+            <item>BadRequestObjectResult sa porukom ako ne uspe da doda katedru u bazu</item>
+            <item>OkObjectResult sa dodatom katedrom ukoliko uspre da doda katedru u bazu</item>
+            </list></returns>
+        </member>
+        <member name="M:napredne_projekat.Controllers.DepartmentController.UpdateDepartment(System.Int32,napredne_projekat.Domain.Department)">
+            <summary>
+            Metoda koja prima PUT zahtev i update-uje katedru sa prosledjenim id-jem sa novim prosledjenim podacima
+            </summary>
+            <param name="id">Id katedre koja treba da se update-uje kao Int, prosledjen iz rute Http zahteva</param>
+            <param name="item">Objekat klase Department koji sadrzi promenjene podatke, prosledjen iz tela Http zahteva</param>
+            <returns><list type="bullet">
+            <item>BadRequestObjectResult sa porukom ako ne uspe da update-uje katedru u bazi</item>
+            <item>OkObjectResult sa novom update-ovanom katedrom ukoliko uspe da update-uje katedru u bazi</item>
+            </list></returns>
+        </member>
+        <member name="M:napredne_projekat.Controllers.DepartmentController.DeleteDepartment(System.Int32)">
+            <summary>
+            Metoda koja prima DELETE zahtev i brise katedru sa prosledjenim id-jem
+            </summary>
+            <param name="id">Id katedre koja treba da se izbrise kao Int, prosledjen iz rute Http zahteva</param>
+            <returns><list type="bullet">
+            <item>BadRequestObjectResult sa porukom ako ne uspe da izbrise katedru iz baze</item>
+            <item>OkObjectResult ukoliko uspe da izbrise katedru iz baze</item>
+            </list></returns>
+        </member>
+        <member name="M:napredne_projekat.Controllers.DepartmentController.FindDepartmentById(System.Int32)">
+            <summary>
+            Metoda koja prima GET zahtev i vraca katedru sa prosledjenim id-jem
+            </summary>
+            <param name="id">Id katedre koja treba da se vrati kao Int, prosledjen iz rute Http zahteva</param>
+            <returns><list type="bullet">
+            <item>BadRequestObjectResult sa porukom ako ne uspe da vrati katedru iz baze</item>
+            <item>OkObjectResult sa katedrom ukoliko uspe da vrati katedru iz baze</item>
+            </list></returns>
+        </member>
         <member name="T:napredne_projekat.Controllers.StudentController">
             <summary>
-            
+            Klasa koja nam sluzi za definisanje http metoda i endpoint-a za Studenta
             </summary>
+        </member>
+        <member name="M:napredne_projekat.Controllers.StudentController.#ctor(napredne_projekat.Services.StudentService)">
+            <summary>
+            Parametrizovani konstruktor koji kreira objekat klase Student i postavlja vrednost za studentService
+            </summary>
+            <param name="studentService">Objekat klase StudentService</param>
+        </member>
+        <member name="M:napredne_projekat.Controllers.StudentController.GetAll">
+            <summary>
+            Metoda koja prima GET zahtev i vraca listu svih studenata
+            </summary>
+            <returns>OkObjectResult sa listom svih studenata</returns>
+        </member>
+        <member name="M:napredne_projekat.Controllers.StudentController.AddStudent(napredne_projekat.Domain.Student)">
+            <summary>
+            Metoda koja prima POST zahtev i ubacuje prosledjenog studenta u bazu
+            </summary>
+            <param name="item">Objekat klase student koji treba da bude ubacen u bazu, iz tela Http zahteva</param>
+            <returns><list type="bullet">
+            <item>BadRequestObjectResult sa porukom ako ne uspe da doda studenta u bazu</item>
+            <item>OkObjectResult sa dodatim studentom ako uspe da ga doda u bazu</item>
+            </list></returns>
+        </member>
+        <member name="M:napredne_projekat.Controllers.StudentController.FindStudentById(System.Int32)">
+            <summary>
+            Metoda koja prima GET zahtev i vraca studenta sa prosledjenim id-jem
+            </summary>
+            <param name="id">Id studenta koji treba da bude vracen, prosledjen iz Http zahteva</param>
+            <returns>OkObjecrResult sa studentom koji ima prosledjen id</returns>
+        </member>
+        <member name="M:napredne_projekat.Controllers.StudentController.GetStudentsByGrade(System.Int32)">
+            <summary>
+            Metoda koja prima GET zahtev i vraca sve studente sa ocenom vecom od prosledjene
+            </summary>
+            <param name="grade">Ocena kao Int, prosledjena iz rute Http zahteva</param>
+            <returns>OkObjectResult sa listom studetna koji imaju ocenu vecu od prosledjene</returns>
+        </member>
+        <member name="T:napredne_projekat.Controllers.SubjectController">
+            <summary>
+            Klasa koja nam sluzi za definisanje Http metoda i endpoint-a za predmet
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Controllers.SubjectController.#ctor(napredne_projekat.Services.SubjectService)">
+            <summary>
+            Parametrizovani konstruktor koji kreira objekat klase SubjecController i postavlja vrednost za subjectService
+            </summary>
+            <param name="subjectService">Objekat klase SubjectService</param>
+        </member>
+        <member name="M:napredne_projekat.Controllers.SubjectController.GetAll">
+            <summary>
+            Metoda koja prima GET zahtev i vraca listu svih predmeta
+            </summary>
+            <returns>OkObjectResult sa listom svih predmeta</returns>
+        </member>
+        <member name="M:napredne_projekat.Controllers.SubjectController.AddSubject(napredne_projekat.Domain.Subject)">
+            <summary>
+            Metoda koja prima POST zahtev i ubacuje novi predmet u bazu
+            </summary>
+            <param name="item">Objekat klase Subject, prosledjen iz tela Http zahteva</param>
+            <returns><list type="bullet">
+            <item>BadRequestObjectResult sa porukom ako ne uspe da ubaci predmet u bazu</item>
+            <item>OkObjectResutl sa ubacenim predmetom ako uspe da ubaci predmet u bazu</item>
+            </list></returns>
+        </member>
+        <member name="M:napredne_projekat.Controllers.SubjectController.UpdateSubject(System.Int32,napredne_projekat.Domain.Subject)">
+            <summary>
+            Metoda koja prima PUT zahtev u update-uje predmet sa prosledjenim id-jem
+            </summary>
+            <param name="id">Id predmeta koji treba da se updat-uje kao Int, prosledjen iz rute Http zahteva</param>
+            <param name="item">Objekat klase Subject sa novim podacima predmeta, prosledjen iz tela Http zahteva</param>
+            <returns><list type="bullet">
+            <item>BadRequestObjectResult sa porukom ako ne uspe da update-uje predmet u bazi</item>
+            <item>OkObjectResutl sa update-ovanim predmetom ako uspe da update-uje predmet u bazi</item>
+            </list></returns>
+        </member>
+        <member name="M:napredne_projekat.Controllers.SubjectController.GetById(System.Int32)">
+            <summary>
+            Metoda koja prima GET zahtev i vraca predmet sa datim Id-jem
+            </summary>
+            <param name="id">Id predmeta koji treba da se vrati kao Int, prosledjen iz rute Http zahteva</param>
+            <returns>OkObjectResult sa predmetom koji ima id koji je prosledjen</returns>
         </member>
         <member name="T:napredne_projekat.Domain.Department">
             <summary>
@@ -80,16 +219,10 @@
             </summary>
         </member>
         <member name="M:napredne_projekat.Domain.NaprednoContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-            <summary>
-            Metoda za konfiguraciju baze
-            </summary>
-            <param name="optionsBuilder"></param>
+            <inheritdoc/>
         </member>
         <member name="M:napredne_projekat.Domain.NaprednoContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <summary>
-            Metoda za definisnaje tabela, veza i ogranicenja u bazi
-            </summary>
-            <param name="modelBuilder"></param>
+            <inheritdoc/>
         </member>
         <member name="M:napredne_projekat.Domain.NaprednoContext.#ctor">
             <summary>
@@ -98,7 +231,7 @@
         </member>
         <member name="M:napredne_projekat.Domain.NaprednoContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions)">
             <summary>
-            Parametraski konstrukotor za kreiranje objekta
+            Parametraski konstrukotor koji kreira objekat i postavlja pocetne opcije
             </summary>
             <param name="options">Opcije za kreiranje contexta</param>
         </member>
@@ -177,6 +310,32 @@
             Lista studenata koji pohadjaju ovaj predmet
             </summary>
         </member>
+        <member name="T:napredne_projekat.Exeptions.cs.AlreadyExistsException">
+            <summary>
+            Klasa koja nasledjuje klasu Exception i predstavlja Exception kada neki objekat vec postoji
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Exeptions.cs.AlreadyExistsException.#ctor">
+            <summary>
+            Bezparmatraski konstruktor koji kreira objekat klase AlreadyExistsException
+            </summary>
+        </member>
+        <member name="T:napredne_projekat.Exeptions.cs.IdException">
+            <summary>
+            Klasa koja nasledjuje klasu Exception, i predstavlja Exception kada se unese nevalidan Id
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Exeptions.cs.IdException.#ctor">
+            <summary>
+            Bezparmatraski konstruktor koji kreira objekat klase IdException
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Exeptions.cs.IdException.#ctor(System.String)">
+            <summary>
+            Parametraski konstruktor koji kreira objekat klase IdException i postavlja vrednost za message
+            </summary>
+            <param name="message">Poruka exceptiona kao String</param>
+        </member>
         <member name="T:napredne_projekat.Program">
             <summary>
             Klasa u kojoj se nalaze metode za pokretanje aplikacije
@@ -217,7 +376,6 @@
             Metoda koja dodaje entity u tabelu
             </summary>
             <param name="item">Entity klase T</param>
-            <returns>Entity klase T</returns>
         </member>
         <member name="M:napredne_projekat.Repository.IRepository`1.Update(`0,System.Int32)">
             <summary>
@@ -233,91 +391,345 @@
             <param name="id">Id entity-a kojeg zelimo da izbrisiemo</param>
         </member>
         <member name="T:napredne_projekat.Repository.IRepositoryDepartment">
-            <inheritdoc cref="T:napredne_projekat.Repository.IRepository`1"/>
+            <summary>
+            Interfejs koji odredjuje sve operacije za manipulaciju katedrama u bazi
+            </summary>
         </member>
         <member name="M:napredne_projekat.Repository.IRepositoryDepartment.FindOne(System.Linq.Expressions.Expression{System.Func{napredne_projekat.Domain.Department,System.Boolean}})">
             <summary>
             Metoda koja vraca jedan entity iz tabele na osnovu uslova koji smo zadali
             </summary>
             <param name="expression">Lambda izraz koji prosledjujemo kao uslov koji mora da se ispuni</param>
-            <returns></returns>
         </member>
         <member name="T:napredne_projekat.Repository.IRepositoryStudent">
-            <inheritdoc/>
+            <summary>
+            Interfejs koji odredjuje sve operacije za manipulaciju studentima u bazi
+            </summary>
         </member>
         <member name="M:napredne_projekat.Repository.IRepositoryStudent.GetStudentsByGrade(System.Linq.Expressions.Expression{System.Func{napredne_projekat.Domain.Student,System.Boolean}})">
             <summary>
-            
+            Metoda koja prima lambda izraz kao uslov i vraca listu studenata koji zadovoljavaju taj uslov
             </summary>
             <param name="func"></param>
-            <returns></returns>
+        </member>
+        <member name="M:napredne_projekat.Repository.IRepositoryStudent.GetStudentByIndex(System.String)">
+            <summary>
+            Metoda koja prima index i vraca studenta sa tim index-om
+            </summary>
+            <param name="index">Index studenta kao String</param>
+        </member>
+        <member name="T:napredne_projekat.Repository.IRepositorySubject">
+            <summary>
+            Interfejs koji odredjuje sve operacije za manipulaciju predmetim u bazi
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Repository.IRepositorySubject.FindOne(System.Linq.Expressions.Expression{System.Func{napredne_projekat.Domain.Subject,System.Boolean}})">
+            <summary>
+            Metoda koja prima lambda izraz kao uslov i vraca predmet koji zadovoljava taj uslov
+            </summary>
+            <param name="func">Uslov kao lambda izraz</param>
         </member>
         <member name="T:napredne_projekat.Repository.repo_impl.RepositoryDepartment">
-            <inheritdoc />
+            <summary>
+            Klasa u kojoj su implementirane sve opercije za manipulaciju katedrama u bazi
+            </summary>
         </member>
         <member name="M:napredne_projekat.Repository.repo_impl.RepositoryDepartment.#ctor(napredne_projekat.Domain.NaprednoContext)">
             <summary>
-            
+            Parametrizovani konstruktor koji kreira objekat klase RepositoryDepartment i postavlja vrednost za context
             </summary>
-            <param name="context"></param>
+            <param name="context">Objekat klase NaprenoContext</param>
         </member>
         <member name="M:napredne_projekat.Repository.repo_impl.RepositoryDepartment.Add(napredne_projekat.Domain.Department)">
-            <inheritdoc path="not[self::returns]"/>
-            <returns>Entity klase Department</returns>
+            <inheritdoc/>
+            <returns>Objekat klase Department koji je dodat u bazu</returns>
         </member>
         <member name="M:napredne_projekat.Repository.repo_impl.RepositoryDepartment.Delete(System.Int32)">
             <inheritdoc />
         </member>
         <member name="M:napredne_projekat.Repository.repo_impl.RepositoryDepartment.FindById(System.Int32)">
             <inheritdoc />
-            <returns>Entity klase Department</returns>
+            <returns>Objekat klase Department sa datim id-jem</returns>
         </member>
         <member name="M:napredne_projekat.Repository.repo_impl.RepositoryDepartment.FindOne(System.Linq.Expressions.Expression{System.Func{napredne_projekat.Domain.Department,System.Boolean}})">
             <inheritdoc />
-            <returns>Entity klase Department</returns>
+            <returns>Objekat klase Department koji zadovoljava uslov</returns>
         </member>
         <member name="M:napredne_projekat.Repository.repo_impl.RepositoryDepartment.GetAll">
             <inheritdoc />
-            <returns>Lista entity-a klase Department</returns>
+            <returns>Lista svih katedri</returns>
         </member>
         <member name="M:napredne_projekat.Repository.repo_impl.RepositoryDepartment.Update(napredne_projekat.Domain.Department,System.Int32)">
             <inheritdoc />
-            <returns>Entity klase Department</returns>
+            <returns>Objekat klase Department koji je update-ovan</returns>
         </member>
         <member name="T:napredne_projekat.Repository.repo_impl.RepositoryStudent">
-            <inheritdoc/>
+            <summary>
+            Klasa u kojoj su implementirane sve opercije za manipulaciju studentima u bazi
+            </summary>
         </member>
         <member name="M:napredne_projekat.Repository.repo_impl.RepositoryStudent.#ctor(napredne_projekat.Domain.NaprednoContext)">
             <summary>
-            
+            Parametrizovani konstruktor koji kreira objekat klase RepositoryStudent i postavlja vrednost za context
             </summary>
-            <param name="context"></param>
+            <param name="context">Objekat klase NaprenoContext</param>
         </member>
         <member name="M:napredne_projekat.Repository.repo_impl.RepositoryStudent.Add(napredne_projekat.Domain.Student)">
             <inheritdoc/>
+            <returns>Objekat klase Student koji je dodat</returns>
         </member>
         <member name="M:napredne_projekat.Repository.repo_impl.RepositoryStudent.Delete(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:napredne_projekat.Repository.repo_impl.RepositoryStudent.FindById(System.Int32)">
             <inheritdoc/>
+            <returns>Objekat klase Student koji ima prosledjen id</returns>
         </member>
         <member name="M:napredne_projekat.Repository.repo_impl.RepositoryStudent.GetAll">
             <inheritdoc/>
+            <returns>Listu svih studenata</returns>
         </member>
         <member name="M:napredne_projekat.Repository.repo_impl.RepositoryStudent.GetStudentByIndex(System.String)">
             <inheritdoc/>
+            <returns>Objekat klase student koji ima prosledjen index</returns>
         </member>
         <member name="M:napredne_projekat.Repository.repo_impl.RepositoryStudent.GetStudentsByGrade(System.Linq.Expressions.Expression{System.Func{napredne_projekat.Domain.Student,System.Boolean}})">
             <inheritdoc/>
+            <returns>Listu studenta koji zadovoljavaju uslov za ocene</returns>
         </member>
         <member name="M:napredne_projekat.Repository.repo_impl.RepositoryStudent.Update(napredne_projekat.Domain.Student,System.Int32)">
             <inheritdoc/>
+            <returns>Objekat klase Student koji je update-ovan</returns>
+        </member>
+        <member name="T:napredne_projekat.Repository.repo_impl.RepositorySubject">
+            <summary>
+            Klasa u kojoj su implementirane sve opercije za manipulaciju predmetima u bazi
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Repository.repo_impl.RepositorySubject.#ctor(napredne_projekat.Domain.NaprednoContext)">
+            <summary>
+            Parametrizovani konstruktor koji kreira objekat klase RepositorySubject i postavlja vrednost za context
+            </summary>
+            <param name="context">Objekat klase NaprenoContext</param>
+        </member>
+        <member name="M:napredne_projekat.Repository.repo_impl.RepositorySubject.Add(napredne_projekat.Domain.Subject)">
+            <inheritdoc/>
+            <returns>Objekat klase Subject koji je dodat u bazu</returns>
+        </member>
+        <member name="M:napredne_projekat.Repository.repo_impl.RepositorySubject.Delete(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:napredne_projekat.Repository.repo_impl.RepositorySubject.FindById(System.Int32)">
+            <inheritdoc/>
+            <returns>Objekat klase Subject koji ima dati id</returns>
+        </member>
+        <member name="M:napredne_projekat.Repository.repo_impl.RepositorySubject.FindOne(System.Linq.Expressions.Expression{System.Func{napredne_projekat.Domain.Subject,System.Boolean}})">
+            <inheritdoc/>
+            <returns>Objekat klase Subject koji zadovoljava uslov</returns>
+        </member>
+        <member name="M:napredne_projekat.Repository.repo_impl.RepositorySubject.GetAll">
+            <inheritdoc/>
+            <returns>Listu objekata klase Subject koja predstavlja listu svih predmeta</returns>
+        </member>
+        <member name="M:napredne_projekat.Repository.repo_impl.RepositorySubject.Update(napredne_projekat.Domain.Subject,System.Int32)">
+            <inheritdoc/>
+            <returns>Objekat klase Subject koji je update-ovan</returns>
+        </member>
+        <member name="T:napredne_projekat.Repository.unit_of_work.IUnitOfWork">
+            <summary>
+            Interfejs koji nam sluzi da objedimo sve repository-je i omogucava da se sve obavlja pod jednom transakcijom
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Repository.unit_of_work.IUnitOfWork.Departments">
+            <summary>
+            Property koji nam sluzi za pristup metodama klase RepositroyDepartment
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Repository.unit_of_work.IUnitOfWork.Students">
+            <summary>
+            Property koji nam sluzi za pristup metodama klase RepositoryStudent
+            </summary>
+        </member>
+        <member name="P:napredne_projekat.Repository.unit_of_work.IUnitOfWork.Subjects">
+            <summary>
+            Property koji nam sluzi za pristup metodama klase RepositorySubject
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Repository.unit_of_work.IUnitOfWork.Commit">
+            <summary>
+            Metoda koja sluzi za cuvanje izmena koje su izvresne pod transakcijom
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Repository.unit_of_work.IUnitOfWork.Dispose">
+            <summary>
+            Metoda za prekid rada nad bazom
+            </summary>
+        </member>
+        <member name="T:napredne_projekat.Repository.unit_of_work.UnitOfWork">
+            <summary>
+            Klasa koja nasledjuje interfejs IUnitOfWork i koja nam sluzi da objedimo sve repository-je i omogucava da se sve obavlja pod jednom transakcijom
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Repository.unit_of_work.UnitOfWork.#ctor(napredne_projekat.Domain.NaprednoContext)">
+            <summary>
+            Parametraki konstruktor koji kreira objekat klase UnitOfWork i postavlja vrednosti za context, Departments, Students i Subjects
+            </summary>
+            <param name="context">Objekat klase NaprednoContext</param>
+        </member>
+        <member name="P:napredne_projekat.Repository.unit_of_work.UnitOfWork.Departments">
+            <inheritdoc/>
+        </member>
+        <member name="P:napredne_projekat.Repository.unit_of_work.UnitOfWork.Students">
+            <inheritdoc/>
+        </member>
+        <member name="P:napredne_projekat.Repository.unit_of_work.UnitOfWork.Subjects">
+            <inheritdoc/>
+        </member>
+        <member name="M:napredne_projekat.Repository.unit_of_work.UnitOfWork.Commit">
+            <inheritdoc/>
+        </member>
+        <member name="M:napredne_projekat.Repository.unit_of_work.UnitOfWork.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:napredne_projekat.Services.DepartmentService">
+            <summary>
+            Klasa koja nam sluzi za kao serivis iz koga se pozivaju operacije nad tabelom departmetnts u bazi
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Services.DepartmentService.#ctor(napredne_projekat.Repository.unit_of_work.IUnitOfWork)">
+            <summary>
+            Parametrizovani konstrukor koji kreira objekat klase DepartmentService i postavlja vrednost za uow
+            </summary>
+            <param name="uow">Objekat klase UnitOfWork</param>
+        </member>
+        <member name="M:napredne_projekat.Services.DepartmentService.GetAll">
+            <summary>
+            Metoda koja poziva UnitOfWork i vraca listu svih katedri
+            </summary>
+            <returns>Lista svih katedri</returns>
+        </member>
+        <member name="M:napredne_projekat.Services.DepartmentService.Add(napredne_projekat.Domain.Department)">
+            <summary>
+            Metoda koja poziva UnitOfWork da doda katedru  i vraca tu katedru
+            </summary>
+            <param name="item">Objekat klase Department</param>
+            <returns>Objekat klase Department koji je dodat</returns>
+            <exception cref="T:napredne_projekat.Exeptions.cs.AlreadyExistsException" />
+            <exception cref="T:System.NullReferenceException" />
+        </member>
+        <member name="M:napredne_projekat.Services.DepartmentService.FindById(System.Int32)">
+            <summary>
+            Metoda koja poziva UnitOfWork i vraca katedru za prosledjenim id-jem
+            </summary>
+            <param name="id">Id katedre kao Int</param>
+            <returns>Objekat klase Department koji ima dati id</returns>
+            <exception cref="T:napredne_projekat.Exeptions.cs.IdException" />
+        </member>
+        <member name="M:napredne_projekat.Services.DepartmentService.Update(napredne_projekat.Domain.Department,System.Int32)">
+            <summary>
+            Metoda koja poziva UnitOfWork da update-uje katedru sa prosledjenim id-jem i vraca tu katedru
+            </summary>
+            <param name="item">Objekat klase Department sa novim podacima</param>
+            <param name="id">Id katedre koja treba da se update-uje kao Int</param>
+            <returns>Objekat klase Department koji je update-ovan</returns>
+            <exception cref="T:napredne_projekat.Exeptions.cs.IdException" />
+            <exception cref="T:System.NullReferenceException" />
+        </member>
+        <member name="M:napredne_projekat.Services.DepartmentService.Delete(System.Int32)">
+            <summary>
+            Metoda koja poziva UnitOfWork da izbrise katedru sa datim id-jem
+            </summary>
+            <param name="id">Id katedre koja treba da se obrise kao Int</param>
+            <exception cref="T:napredne_projekat.Exeptions.cs.IdException" />
         </member>
         <member name="T:napredne_projekat.Services.StudentService">
             <summary>
-            
+            Klasa koja nam sluzi za kao serivis iz koga se pozivaju operacije nad tabelom student u bazi
             </summary>
+        </member>
+        <member name="M:napredne_projekat.Services.StudentService.#ctor(napredne_projekat.Repository.unit_of_work.IUnitOfWork)">
+            <summary>
+            Parametrizovani konstrukor koji kreira objekat klase StudentService i postavlja vrednost za uow
+            </summary>
+            <param name="uow">Objekat klase UnitOfWork</param>
+        </member>
+        <member name="M:napredne_projekat.Services.StudentService.GetAll">
+            <summary>
+            Metoda koja poziva UnitOfWork i vraca listu svih studenata
+            </summary>
+            <returns>Lista svih studenata</returns>
+        </member>
+        <member name="M:napredne_projekat.Services.StudentService.AddStudent(napredne_projekat.Domain.Student)">
+            <summary>
+            Metoda koja poziva UnitOfWork da doda studetna  i vraca tog studetna
+            </summary>
+            <param name="item">Objekat klase Student</param>
+            <returns>Objekat klase Student koji je dodat</returns>
+            <exception cref="T:napredne_projekat.Exeptions.cs.AlreadyExistsException" />
+            <exception cref="T:System.NullReferenceException" />
+        </member>
+        <member name="M:napredne_projekat.Services.StudentService.FindById(System.Int32)">
+            <summary>
+            Metoda koja poziva UnitOfWork i vraca studenta za prosledjenim id-jem
+            </summary>
+            <param name="id">Id studenta kao Int</param>
+            <returns>Objekat klase Student koji ima dati id</returns>
+        </member>
+        <member name="M:napredne_projekat.Services.StudentService.GetByGrade(System.Int32)">
+            <summary>
+            Metoda koja poziva UnitOfWork da vrati sve studente sa ocenom vecom od prosledjene
+            </summary>
+            <param name="grade">Ocena studenta kao Int</param>
+            <returns>Lista studenata koji imaju ocenu vecu od prosledjene</returns>
+        </member>
+        <member name="T:napredne_projekat.Services.SubjectService">
+            <summary>
+            Klasa koja nam sluzi za kao serivis iz koga se pozivaju operacije nad tabelom subjects u bazi
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Services.SubjectService.#ctor(napredne_projekat.Repository.unit_of_work.IUnitOfWork)">
+            <summary>
+            Parametrizovani konstrukor koji kreira objekat klase SubjectService i postavlja vrednost za uow
+            </summary>
+            <param name="uow">Objekat klase UnitOfWork</param>
+        </member>
+        <member name="M:napredne_projekat.Services.SubjectService.GetAll">
+            <summary>
+            Metoda koja poziva UnitOfWork i vraca listu svih predmeta
+            </summary>
+            <returns>Lista svih predmeta</returns>
+        </member>
+        <member name="M:napredne_projekat.Services.SubjectService.FindById(System.Int32)">
+            <summary>
+            Metoda koja poziva UnitOfWork i vraca predmet za prosledjenim id-jem
+            </summary>
+            <param name="id">Id predmeta kao Int</param>
+            <returns>Objekat klase Subject koji ima dati id</returns>
+        </member>
+        <member name="M:napredne_projekat.Services.SubjectService.UpdateSubject(napredne_projekat.Domain.Subject,System.Int32)">
+            <summary>
+            Metoda koja poziva UnitOfWork da update-uje predmet sa prosledjenim id-jem i vraca taj predet
+            </summary>
+            <param name="subject">Objekat klase Subject sa novim podacima</param>
+            <param name="id">Id predmeta koji treba da se update-uje kao Int</param>
+            <returns>Objekat klase Subject koji je update-ovan</returns>
+            <exception cref="T:System.NullReferenceException" />
+        </member>
+        <member name="M:napredne_projekat.Services.SubjectService.AddSubject(napredne_projekat.Domain.Subject)">
+            <summary>
+            Metoda koja poziva UnitOfWork da doda predmet  i vraca taj predet
+            </summary>
+            <param name="subject">Objekat klase Subject</param>
+            <returns>Objekat klase Subject koji je dodat</returns>
+            <exception cref="T:napredne_projekat.Exeptions.cs.AlreadyExistsException" />
+            <exception cref="T:System.NullReferenceException" />
+        </member>
+        <member name="M:napredne_projekat.Services.SubjectService.FindOneByCondition(System.Linq.Expressions.Expression{System.Func{napredne_projekat.Domain.Subject,System.Boolean}})">
+            <summary>
+            Metoda koja poziva UnitOfWork da vrati predmet koji zadovoljava uslov
+            </summary>
+            <param name="func">Uslov kao lambda izraz</param>
+            <returns>Objekat klase Subject koji zadovoljava uslov</returns>
         </member>
         <member name="T:napredne_projekat.Startup">
             <summary>
@@ -355,6 +767,15 @@
         </member>
         <member name="M:napredne_projekat.Validation.DepartmentNameValidation.IsValid(System.Object)">
             <inheritdoc/>
+            <exception cref="T:System.NullReferenceException" />
+        </member>
+        <member name="T:napredne_projekat.Validation.EspbValidation">
+            <summary>
+            Klasa koja nam sluzi za validaciju espb-a
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Validation.EspbValidation.IsValid(System.Object)">
+            <inheritdoc/>
         </member>
         <member name="T:napredne_projekat.Validation.GradeValidation">
             <summary>
@@ -370,14 +791,8 @@
             </summary>
         </member>
         <member name="M:napredne_projekat.Validation.IdValidation.IsValid(System.Object)">
-            <summary>
-            Metoda koja proverava da li prosledjena vrednost zadovoljava uslove
-            </summary>
-            <param name="value"></param>
-            <returns><list type="bullet">
-            <item>true - ako zadovoljava uslove</item>
-            <item>false - ako ne zadovoljava uslove</item>
-            </list></returns>
+            <inheritdoc/>
+            <exception cref="T:System.NullReferenceException" />
         </member>
         <member name="T:napredne_projekat.Validation.IndexValidation">
             <summary>
@@ -386,6 +801,15 @@
         </member>
         <member name="M:napredne_projekat.Validation.IndexValidation.IsValid(System.Object)">
             <inheritdoc/>
+        </member>
+        <member name="T:napredne_projekat.Validation.NameValidation">
+            <summary>
+            Klasa koja nam sluzi za validaciju naziva
+            </summary>
+        </member>
+        <member name="M:napredne_projekat.Validation.NameValidation.IsValid(System.Object)">
+            <inheritdoc/>
+            <exception cref="T:System.NullReferenceException" />
         </member>
         <member name="T:napredne_projekat.Validation.SizeValidation">
             <summary>
@@ -402,6 +826,7 @@
         </member>
         <member name="M:napredne_projekat.Validation.YearOfBirthValidation.IsValid(System.Object)">
             <inheritdoc/>
+            <exception cref="T:System.NullReferenceException" />
         </member>
     </members>
 </doc>

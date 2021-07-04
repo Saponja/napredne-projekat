@@ -7,21 +7,23 @@ using System.Threading.Tasks;
 
 namespace napredne_projekat.Repository.repo_impl
 {
-    ///<inheritdoc />
+    /// <summary>
+    /// Klasa u kojoj su implementirane sve opercije za manipulaciju katedrama u bazi
+    /// </summary>
     public class RepositoryDepartment : IRepositoryDepartment
     {
         private readonly NaprednoContext context;
         /// <summary>
-        /// 
+        /// Parametrizovani konstruktor koji kreira objekat klase RepositoryDepartment i postavlja vrednost za context
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Objekat klase NaprenoContext</param>
         public RepositoryDepartment(NaprednoContext context)
         {
             this.context = context;
         }
 
-        ///<inheritdoc path="not[self::returns]"/>
-        ///<returns>Entity klase Department</returns>
+        ///<inheritdoc/>
+        ///<returns>Objekat klase Department koji je dodat u bazu</returns>
         public Department Add(Department item)
         {
             if (context.Departments.Add(item) == null)
@@ -37,25 +39,25 @@ namespace napredne_projekat.Repository.repo_impl
             context.Departments.Remove(department);
         }
         ///<inheritdoc />
-        ///<returns>Entity klase Department</returns>
+        ///<returns>Objekat klase Department sa datim id-jem</returns>
         public Department FindById(int id)
         {
             return context.Departments.SingleOrDefault(d => d.DepartmentId == id);
         }
         ///<inheritdoc />
-        ///<returns>Entity klase Department</returns>
+        ///<returns>Objekat klase Department koji zadovoljava uslov</returns>
         public Department FindOne(Expression<Func<Department, bool>> expression)
         {
             return context.Departments.SingleOrDefault(expression);
         }
         ///<inheritdoc />
-        ///<returns>Lista entity-a klase Department</returns>
+        ///<returns>Lista svih katedri</returns>
         public List<Department> GetAll()
         {
             return context.Departments.ToList();
         }
         ///<inheritdoc />
-        ///<returns>Entity klase Department</returns>
+        ///<returns>Objekat klase Department koji je update-ovan</returns>
         public Department Update(Department item, int id)
         {
             Department department = FindById(id);

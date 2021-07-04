@@ -9,21 +9,35 @@ using System.Threading.Tasks;
 namespace napredne_projekat.Services
 {
     /// <summary>
-    /// 
+    /// Klasa koja nam sluzi za kao serivis iz koga se pozivaju operacije nad tabelom student u bazi
     /// </summary>
     public class StudentService
     {
         private IUnitOfWork uow;
 
+        /// <summary>
+        /// Parametrizovani konstrukor koji kreira objekat klase StudentService i postavlja vrednost za uow
+        /// </summary>
+        /// <param name="uow">Objekat klase UnitOfWork</param>
         public StudentService(IUnitOfWork uow)
         {
             this.uow = uow;
         }
-
+        /// <summary>
+        /// Metoda koja poziva UnitOfWork i vraca listu svih studenata
+        /// </summary>
+        /// <returns>Lista svih studenata</returns>
         public List<Student> GetAll()
         {
             return uow.Students.GetAll();
         }
+        /// <summary>
+        /// Metoda koja poziva UnitOfWork da doda studetna  i vraca tog studetna
+        /// </summary>
+        /// <param name="item">Objekat klase Student</param>
+        /// <returns>Objekat klase Student koji je dodat</returns>
+        /// <exception cref="AlreadyExistsException" />
+        /// <exception cref="System.NullReferenceException" />
 
         public Student AddStudent(Student item)
         {
@@ -41,12 +55,20 @@ namespace napredne_projekat.Services
             return student;
         }
 
-
+        /// <summary>
+        /// Metoda koja poziva UnitOfWork i vraca studenta za prosledjenim id-jem
+        /// </summary>
+        /// <param name="id">Id studenta kao Int</param>
+        /// <returns>Objekat klase Student koji ima dati id</returns>
         public Student FindById(int id)
         {
             return uow.Students.FindById(id);
         }
-
+        /// <summary>
+        /// Metoda koja poziva UnitOfWork da vrati sve studente sa ocenom vecom od prosledjene
+        /// </summary>
+        /// <param name="grade">Ocena studenta kao Int</param>
+        /// <returns>Lista studenata koji imaju ocenu vecu od prosledjene</returns>
         public List<Student> GetByGrade(int grade)
         {
             if(grade > 10 || grade < 5)
