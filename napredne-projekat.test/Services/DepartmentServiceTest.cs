@@ -173,6 +173,53 @@ namespace napredne_projekat.test.Services
             Dispose();
         }
 
+        [Fact]
+        public void ToJsonShouldReturnObjectInJsonFormat()
+        {
+            Department department = departmentService.FindById(1);
+            string json = departmentService.ToJson(department);
+            Assert.Contains(department.Name.ToLower(), json.ToLower());
+            Assert.Contains(department.Size.ToString(), json.ToLower());
+
+        }
+
+        [Fact]
+        public void ToJsonNoNamePropShouldReturnObjectInJsonFormatWithNullNameProp()
+        {
+            Department department = new Department
+            {
+                Size = 7
+            };
+            Assert.Contains("null", departmentService.ToJson(department));
+
+        }
+
+
+            [Fact]
+        public void NullToJsonShouldThrowNullReferenceException()
+        {
+            Assert.Throws<NullReferenceException>(() => departmentService.ToJson(null));
+        }
+
+        [Fact]
+        public void FromJsonShouldReturnDepartmentObject()
+        {
+            Department department = departmentService.FindById(1);
+            string json = departmentService.ToJson(department);
+
+            Department newdepartment = departmentService.FromJson(json);
+
+            Assert.Equal(department.Name, newdepartment.Name);
+            Assert.Equal(department.Size, newdepartment.Size);
+
+        }
+
+        [Fact]
+        public void NullFromJsonShouldThrowNullReferenceException()
+        {
+            Assert.Throws<NullReferenceException>(() => departmentService.FromJson(null));
+        }
+
 
 
         private void SeedNoTracking()

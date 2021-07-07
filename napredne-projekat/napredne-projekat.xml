@@ -642,6 +642,20 @@
             <param name="id">Id katedre koja treba da se obrise kao Int</param>
             <exception cref="T:napredne_projekat.Exeptions.cs.IdException" />
         </member>
+        <member name="M:napredne_projekat.Services.DepartmentService.ToJson(napredne_projekat.Domain.Department)">
+            <summary>
+            Metoda koja vraca objekat u json formatu
+            </summary>
+            <param name="department">Objekat tipa Department</param>
+            <returns>Objekat u json formatu</returns>
+        </member>
+        <member name="M:napredne_projekat.Services.DepartmentService.FromJson(System.String)">
+            <summary>
+            Metoda koja deserijalizuje json u objekat
+            </summary>
+            <param name="json">Json objekat kao string</param>
+            <returns>Objekat kao Department</returns>
+        </member>
         <member name="T:napredne_projekat.Services.StudentService">
             <summary>
             Klasa koja nam sluzi za kao serivis iz koga se pozivaju operacije nad tabelom student u bazi
@@ -681,6 +695,16 @@
             </summary>
             <param name="grade">Ocena studenta kao Int</param>
             <returns>Lista studenata koji imaju ocenu vecu od prosledjene</returns>
+        </member>
+        <member name="M:napredne_projekat.Services.StudentService.UpdateStudent(System.Int32,napredne_projekat.Domain.Student)">
+            <summary>
+            Metoda koja poziva UnitOfWork da update-uje studenta i vrati ga nazad
+            </summary>
+            <param name="id">Id studenta kao int</param>
+            <param name="student">Objekat klase student</param>
+            <returns>Objekat klase student</returns>
+            <exception cref="T:System.NullReferenceException" />
+            <exception cref="T:System.ArgumentException" />
         </member>
         <member name="T:napredne_projekat.Services.SubjectService">
             <summary>

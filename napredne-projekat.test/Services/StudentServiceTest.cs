@@ -205,6 +205,22 @@ namespace napredne_projekat.test.Services
             Dispose();
         }
 
+        [Theory]
+        [InlineData(5)]
+        [InlineData(3)]
+        public void UpdateNonExistingStudentShouldThrowArgumentException(int id)
+        {
+            Assert.Throws<ArgumentException>(() => studentService.UpdateStudent(id, new Student { }));
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        public void UpdateWithNullShouldThrowNullArgumentException(int id)
+        {
+            Assert.Throws<NullReferenceException>(() => studentService.UpdateStudent(id, null));
+        }
+
 
 
 

@@ -2,6 +2,7 @@
 using napredne_projekat.Domain;
 using napredne_projekat.Exeptions.cs;
 using napredne_projekat.Repository.unit_of_work;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -108,5 +109,36 @@ namespace napredne_projekat.Services
             uow.Departments.Delete(id);
             uow.Commit();
         }
+
+        /// <summary>
+        /// Metoda koja vraca objekat u json formatu
+        /// </summary>
+        /// <param name="department">Objekat tipa Department</param>
+        /// <returns>Objekat u json formatu</returns>
+        public string ToJson(Department department)
+        {
+            if(department == null)
+            {
+                throw new NullReferenceException();
+            }
+            string json = JsonConvert.SerializeObject(department);
+            return json;
+        }
+
+        /// <summary>
+        /// Metoda koja deserijalizuje json u objekat
+        /// </summary>
+        /// <param name="json">Json objekat kao string</param>
+        /// <returns>Objekat kao Department</returns>
+        public Department FromJson(string json)
+        {
+            if(json == null)
+            {
+                throw new NullReferenceException();
+            }
+            Department department = JsonConvert.DeserializeObject<Department>(json);
+            return department;
+        }
+
     }
 }

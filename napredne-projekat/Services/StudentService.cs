@@ -77,6 +77,29 @@ namespace napredne_projekat.Services
             }
             return uow.Students.GetStudentsByGrade(s => s.Grade >= grade);
         }
+        /// <summary>
+        /// Metoda koja poziva UnitOfWork da update-uje studenta i vrati ga nazad
+        /// </summary>
+        /// <param name="id">Id studenta kao int</param>
+        /// <param name="student">Objekat klase student</param>
+        /// <returns>Objekat klase student</returns>
+        /// <exception cref="NullReferenceException" />
+        /// <exception cref="ArgumentException" />
+        public Student UpdateStudent(int id, Student student)
+        {
+            if(FindById(id) == null)
+            {
+                throw new ArgumentException();
+            }
+
+            if(student == null)
+            {
+                throw new NullReferenceException();
+
+            }
+
+            return uow.Students.Update(student, id);
+        }
 
     }
 }
