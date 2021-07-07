@@ -24,9 +24,11 @@ namespace napredne_projekat.test.Services
 
         public StudentServiceTest()
         {
+            
             DbContextOptionsBuilder dbContextOption = new DbContextOptionsBuilder<NaprednoContext>().UseInMemoryDatabase(new Guid().ToString());
             context = new NaprednoContext(dbContextOption.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking).Options);
             //context = new NaprednoContext(dbContextOption.Options);
+            
             context.Database.EnsureCreated();
             Seed();
             uow = new UnitOfWork(context);
@@ -88,8 +90,6 @@ namespace napredne_projekat.test.Services
                 Index = "2015/1512"
             };
 
-            context.Students.Add(s1);
-
             var s2 = new Student
             {
                 FirstName = "Pera",
@@ -104,7 +104,6 @@ namespace napredne_projekat.test.Services
 
             context.SaveChanges();
 
-            Thread.Sleep(700);
 
         }
         [Fact]
@@ -211,6 +210,7 @@ namespace napredne_projekat.test.Services
         public void UpdateNonExistingStudentShouldThrowArgumentException(int id)
         {
             Assert.Throws<ArgumentException>(() => studentService.UpdateStudent(id, new Student { }));
+            Dispose();
         }
 
         [Theory]
@@ -219,11 +219,8 @@ namespace napredne_projekat.test.Services
         public void UpdateWithNullShouldThrowNullArgumentException(int id)
         {
             Assert.Throws<NullReferenceException>(() => studentService.UpdateStudent(id, null));
+            Dispose();
         }
-
-
-
-
 
     }
 }

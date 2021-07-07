@@ -98,7 +98,12 @@ namespace napredne_projekat.Services
 
             }
 
-            return uow.Students.Update(student, id);
+
+            Student updated = uow.Students.Update(student, id);
+
+            uow.Commit();
+
+            return updated;
         }
 
     }

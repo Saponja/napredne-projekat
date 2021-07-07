@@ -94,5 +94,21 @@ namespace napredne_projekat.Services
             return uow.Subjects.FindOne(func);
         }
 
+        /// <summary>
+        /// Metoda koja vraca subject u json formatu
+        /// </summary>
+        /// <param name="subject">Objekat klase student</param>
+        /// <returns>String u json formatu</returns>
+        public string ToJson(Subject subject)
+        {
+            if(subject == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            string json = JsonConvert.SerializeObject(subject);
+            return json;
+        }
+
     }
 }

@@ -78,6 +78,7 @@ namespace napredne_projekat.Repository.repo_impl
             student.DateOfBirth = item.DateOfBirth;
             student.Index = item.Index;
             student.Grade = item.Grade;
+
             if (context.Students.Update(student) == null)
             {
                 return null;

@@ -117,6 +117,25 @@ namespace napredne_projekat.test.Services
             Assert.Equal(subjectService.GetAll()[1].Name, result.Name);
         }
 
+        [Fact]
+        public void ToJsonWithNullShouldThrowNullReferenceException()
+        {
+            Assert.Throws<NullReferenceException>(() => subjectService.ToJson(null));
+        }
+
+        [Fact]
+        public void ToJsonShouldReturnObjectInJsonForamt()
+        {
+            Subject subject = subjectService.FindById(1);
+            string json = subjectService.ToJson(subject);
+            Assert.Contains("mobilno", json.ToLower());
+            Assert.Contains("6", json.ToLower());
+            Assert.DoesNotContain("departmentid", json.ToLower());
+        }
+
+
+
+
         private void Seed()
         {
 

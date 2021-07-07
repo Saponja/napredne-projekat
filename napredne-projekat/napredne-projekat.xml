@@ -755,6 +755,13 @@
             <param name="func">Uslov kao lambda izraz</param>
             <returns>Objekat klase Subject koji zadovoljava uslov</returns>
         </member>
+        <member name="M:napredne_projekat.Services.SubjectService.ToJson(napredne_projekat.Domain.Subject)">
+            <summary>
+            Metoda koja vraca subject u json formatu
+            </summary>
+            <param name="subject">Objekat klase student</param>
+            <returns>String u json formatu</returns>
+        </member>
         <member name="T:napredne_projekat.Startup">
             <summary>
             Klasa za konfiguraciju aplikacije, odnosno dodavnje servisa i definisanje pipline-a
